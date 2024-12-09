@@ -58,7 +58,15 @@
 		</div>
 	</div>
 </div>
-<div class='divider px-4'></div>
+<div class='mx-4 sticky border-base-content border-opacity-10 border-y-2 md:border-b-0 py-4 md:pb-0 mt-4 top-0 bg-base-100'>
+	<div class='md:hidden grid grid-cols-2'>
+		<p>{@render label('Words')} {@render value(wordCount)}</p>
+		<p>{@render label('Characters')} {@render value(text.length)}</p>
+		<p>{@render label('Whitespaces')} {@render value(whitespaceCount)}</p>
+		<p>{@render label('Lines')} {@render value(lines.length)}</p>
+		<p>{@render label('Sentences')} {@render value(sentenceCount)}</p>
+	</div>
+</div>
 <div class='flex mt-4'>
 	<div class='w-3/4'>
 		<label class='form-control'>
@@ -80,15 +88,13 @@
 		</label>
 
 	</div>
-	<div class='pt-4 divider divider-horizontal'></div>
-	<div>
-		<div class='mt-4 space-y-2 sticky top-0 pt-4'>
-			<p> {@render label('Words')} {@render value(wordCount)} </p>
-			<p> {@render label('Characters')} {@render value(text.length)}</p>
-			<p> {@render label('Whitespaces')} {@render value(whitespaceCount)}</p>
-			<p> {@render label('Lines')} {@render value(lines.length)}</p>
-			<p> {@render label('Sentences')} {@render value(sentenceCount)}</p>
-		</div>
+	<div class='pt-4 divider divider-horizontal hidden md:flex'></div>
+	<div class='my-4 space-y-2 sticky top-0 pt-4 hidden md:block'>
+		<p>{@render label('Words')} {@render value(wordCount)}</p>
+		<p>{@render label('Characters')} {@render value(text.length)}</p>
+		<p>{@render label('Whitespaces')} {@render value(whitespaceCount)}</p>
+		<p>{@render label('Lines')} {@render value(lines.length)}</p>
+		<p>{@render label('Sentences')} {@render value(sentenceCount)}</p>
 	</div>
 </div>
 
