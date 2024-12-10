@@ -1,0 +1,53 @@
+---
+import Page from '../layouts/Page.astro'
+import { Section } from '@vyke/astro'
+---
+
+<Page title="Many Utils Contact">
+	<Section>
+		<main class="container mx-auto px-4 py-4">
+			<h1 class="text-4xl font-bold mb-8 text-center">Contact Us</h1>
+			<form data-contact-form class="max-w-md mx-auto flex flex-col space-y-4">
+				<label class="form-control">
+					<div class="label">
+						<span class="label-text">What is your name?</span>
+					</div>
+					<input name="name" type="text" placeholder="Type here your name" class="input input-bordered" />
+				</label>
+				<label class="form-control">
+					<div class="label">
+						<span class="label-text">Message</span>
+					</div>
+					<textarea
+						name="message"
+						class="textarea textarea-bordered h-24 text-lg"
+						placeholder="Type here your message..."></textarea>
+				</label>
+				<div class="text-center">
+					<button class="btn btn-primary mt-4">Send Message</button>
+				</div>
+			</form>
+		</main>
+	</Section>
+</Page>
+
+<script is:inline>
+	const form = document.querySelector('[data-contact-form]')
+
+	if (!(form instanceof HTMLFormElement)) {
+		throw new TypeError('Missing form element')
+	}
+
+	function handleSubmit(event) {
+		event.preventDefault()
+		const formData = new FormData(form)
+
+		const name = formData.get('name')
+		const message = formData.get('message')
+
+		const mailtoLink = `mailto:jose@albizures.com?subject=Contact from ${name}&body=${encodeURIComponent(message)}`
+		window.location.href = mailtoLink
+	}
+
+	form.addEventListener('submit', handleSubmit)
+</script>

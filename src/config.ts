@@ -14,12 +14,12 @@ type Site = {
 }
 
 export const SITE: Site = {
-	website: 'https://tinyapps.vyke.dev',
+	website: 'https://manyutils.com',
 	author: 'Jose Albizures',
 	description:
     'A collection of tiny web apps that are useful for everyday tasks.',
-	title: 'Tiny Apps by Vyke',
-	titleSlug: 'tinyapps',
+	title: 'Many Utils',
+	titleSlug: 'Many Utils',
 	lightAndDarkMode: true,
 	postPerPage: 6,
 	themes: {

@@ -1,0 +1,57 @@
+---
+import Icon from './Icon.astro'
+
+export type Props = {
+	dark?: string
+	light?: string
+}
+
+const { dark = 'dark', light = 'cupcake' } = Astro.props
+---
+
+<label class="swap swap-rotate btn btn-circle btn-sm sm:btn-md">
+	<input type="checkbox" data-theme-toggle value="dark" />
+
+	<div class="swap-on">
+		<Icon class="text-sm sm:text-xl" icon="light" />
+	</div>
+	<div class="swap-off">
+		<Icon class="text-sm sm:text-xl" icon="dark" />
+	</div>
+</label>
+
+<script is:inline define:vars={{ dark, light }}>
+	const checkbox = document.querySelector('[data-theme-toggle]')
+
+	if (!(checkbox instanceof HTMLInputElement)) {
+		throw new TypeError('Missing checkbox element')
+	}
+
+	const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+
+	let changeOff
+	if (localStorage.getItem('v:theme') === null) {
+		checkbox.checked = mediaQuery.matches
+
+		function onChange(event) {
+			document.documentElement.dataset.theme = getTheme(event.matches)
+		}
+
+		mediaQuery.addEventListener('change', onChange)
+		changeOff = () => mediaQuery.removeEventListener('change', onChange)
+	}
+
+	function getTheme(isDark) {
+		return isDark ? dark : light
+	}
+
+	checkbox.addEventListener('change', () => {
+		if (changeOff) {
+			changeOff()
+		}
+		const theme = getTheme(checkbox.checked)
+
+		document.documentElement.dataset.theme = theme
+		localStorage.setItem('v:theme', theme)
+	})
+</script>

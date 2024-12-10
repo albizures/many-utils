@@ -1,19 +1,18 @@
 ---
 import Page from '../layouts/Page.astro'
-import { Section } from '@vyke/astro'
+import { utils } from '../utils'
+import UtilCard from '../components/UtilCard.astro'
 ---
 
 <Page>
-	<Section>
-		<h1 class="text-2xl text-center">Welcome to Tiny Apps by Vyke</h1>
-		<p class="mt-4">
-			We are a small team of developers who love to build tiny apps that solve problems. We believe that the best apps
-			are the ones that are simple and easy to use.
-		</p>
+	<div class="mx-auto px-6">
+		<h1 class="text-4xl text-center mt-12">Welcome to Many Utils</h1>
+		<h4 class="mt-4 text-xl text-center text-base-content text-opacity-60">
+			A collection of simple and useful tools to make your life easier.
+		</h4>
 
-		<h3>here is the list of apps we have built so far:</h3>
-		<ul>
-			<li><a class="link" href="/apps/text-counter">Text Counter</a></li>
-		</ul>
-	</Section>
+		<section class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+			{utils.map((util) => <UtilCard util={util} />)}
+		</section>
+	</div>
 </Page>

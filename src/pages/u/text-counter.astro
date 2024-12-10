@@ -1,0 +1,11 @@
+---
+import Page from '../../layouts/Page.astro'
+
+import TextCounterUtil from '../../components/TextCounter.svelte'
+---
+
+<Page>
+	<div class="max-w-5xl mx-auto pt-4">
+		<TextCounterUtil client:load />
+	</div>
+</Page>

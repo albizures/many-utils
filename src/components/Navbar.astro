@@ -1,0 +1,35 @@
+---
+import { Section, IconLinks, Theme } from '@vyke/astro'
+import Icon from './Icon.astro'
+import { SITE } from '../config'
+import ThemeToggle from './ThemeToggle.astro'
+---
+
+<header class="flex flex-col sm:flex-row gap-4 items-center justify-between my-4 border-b border-b-base-300 px-6 pb-4">
+	<div class="flex-1">
+		<a href="/" class="btn border-0 text-xl text-0">
+			<span class="text-base-content text-nowrap">{SITE.title}</span>
+		</a>
+	</div>
+	<div class="flex gap-2">
+		<label class="form-control w-full max-w-xs">
+			<div class="label sr-only">
+				<span class="label-text">Searh utils...</span>
+			</div>
+			<input
+				type="text"
+				placeholder="Searh utils..."
+				class="input input-sm sm:input-md input-bordered input-md w-full max-w-xs"
+			/>
+		</label>
+		<button class="btn btn-sm sm:input-md">
+			<Icon class="text-lg" icon="search" />
+		</button>
+	</div>
+	<div class="flex-1 flex justify-end gap-3">
+		<a href="/about" class="btn btn-ghost btn-sm sm:btn-md rounded-xl">About</a>
+		<a href="/contact" class="btn btn-ghost btn-sm sm:btn-md rounded-xl">Contact</a>
+
+		<ThemeToggle dark={SITE.themes.dark} light={SITE.themes.light} />
+	</div>
+</header>
