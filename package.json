@@ -2,7 +2,7 @@
 	"name": "manyutils",
 	"type": "module",
 	"version": "0.0.1",
-	"description": "A collection of utilities for several purposes",
+	"description": "A collection of simple and useful tools to make your life easier.",
 	"scripts": {
 		"dev": "astro dev",
 		"build": "astro build",
