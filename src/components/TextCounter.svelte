@@ -1,4 +1,5 @@
 <script lang='ts'>
+	import Collapse from './Collapse.svelte'
 	import Icon from './Icon.svelte'
 	import Density from './TextCounter.Density.svelte'
 	import SettingBtn from './TextCounter.SettingBtn.svelte'
@@ -13,8 +14,11 @@
 	$effect(() => {
 		// eslint-disable-next-line no-unused-expressions
 		text // to trigger the reactivity
+
+		const height = textarea.scrollHeight < 200 ? 200 : textarea.scrollHeight
+
 		textarea.style.width = '100%'
-		textarea.style.height = `${textarea.scrollHeight}px`
+		textarea.style.height = `${height}px`
 	})
 
 	function onExpand() {
@@ -23,9 +27,9 @@
 
 </script>
 <div
-	class='top-0 left-0 w-full h-full bg-base-100 z-50'
+	data-testid='text-counter'
+	class='top-0 left-0 w-full h-full bg-base-100 z-50 p-6'
 	class:fixed={status === 'expanded'}
-	class:p-6={status === 'expanded'}
 >
 	<div class='flex justify-between'>
 		<span>
@@ -33,6 +37,7 @@
 		</span>
 		<h1 class='text-2xl sm:text-3xl text-center justify-self-center'>Text Counter</h1>
 		<button onclick={onExpand}>
+			<span class='sr-only'>{status === 'expanded' ? 'collapse' : 'expand'}</span>
 			<Icon class='text-xl' icon='expand' />
 		</button>
 	</div>
@@ -55,10 +60,15 @@
 			</div>
 		</div>
 	</div>
-	<div class='mx-4 sticky border-base-content border-opacity-10 border-y-2 md:border-b-0 py-4 md:pb-0 mt-4 top-0 bg-base-100'>
-		<div class='md:hidden grid grid-cols-2'>
-			<Stats text={text} />
-		</div>
+	<div class='mx-4 sticky md:pb-0 mt-4 top-0 bg-base-100'>
+		<Collapse initialState='expanded' class='md:hidden' title='Stats'>
+			<div class='grid grid-cols-3 gap-4'>
+				<Stats text={text} />
+			</div>
+		</Collapse>
+		<Collapse class='md:hidden' title='Keywords'>
+			<Density text={text} />
+		</Collapse>
 	</div>
 	<div class='flex mt-4'>
 		<div class='w-3/4'>
@@ -81,10 +91,18 @@
 			</label>
 
 		</div>
-		<div class='pt-4 divider divider-horizontal hidden md:flex'></div>
-		<div class='my-4 space-y-2 sticky top-0 pt-4 hidden md:block'>
-			<Stats text={text} />
-			<Density text={text} />
+		<div class='divider divider-horizontal hidden md:flex'></div>
+		<div class='hidden md:block grow w-1/4'>
+			<div class='sticky top-0 pt-4'>
+				<Collapse initialState='expanded' title='Stats'>
+					<div class='space-y-2'>
+						<Stats text={text} />
+					</div>
+				</Collapse>
+				<Collapse title='Keywords'>
+					<Density text={text} />
+				</Collapse>
+			</div>
 		</div>
 	</div>
 

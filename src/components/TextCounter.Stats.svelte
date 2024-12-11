@@ -1,5 +1,6 @@
 <script lang='ts'>
-	import { getLines, getSentenceCount, getWhitespaceCount, getWordCount } from '../utils/text'
+	import { getParagraphs, getSentenceCount, getWhitespaceCount, getWords } from '../utils/text'
+	import Value from './TextCounter.Value.svelte'
 
 	type Props = {
 		text: string
@@ -7,27 +8,15 @@
 
 	let { text }: Props = $props()
 
-	const wordCount = $derived(getWordCount(text))
+	const wordCount = $derived(getWords(text).length)
 	const whitespaceCount = $derived(getWhitespaceCount(text))
-	const lines = $derived(getLines(text))
+	const lines = $derived(getParagraphs(text))
 	const sentenceCount = $derived(getSentenceCount(lines))
 
 </script>
 
-<p>{@render label('Words')} {@render value(wordCount)}</p>
-<p>{@render label('Characters')} {@render value(text.length)}</p>
-<p>{@render label('Whitespaces')} {@render value(whitespaceCount)}</p>
-<p>{@render label('Lines')} {@render value(lines.length)}</p>
-<p>{@render label('Sentences')} {@render value(sentenceCount)}</p>
-
-{#snippet label(value: string)}
-	<span class='opacity-50'>
-		{value}:
-	</span>
-{/snippet}
-
-{#snippet value(value: string | number)}
-	<span class=' font-bold '>
-		{value}
-	</span>
-{/snippet}
+<Value label='Words' value={wordCount} testId='stat-value-words' />
+<Value label='Characters' value={text.length} testId='stat-value-characters' />
+<Value label='Whitespaces' value={whitespaceCount} testId='stat-value-whitespaces' />
+<Value label='Paragraphs' value={lines.length} testId='stat-value-paragraphs' />
+<Value label='Sentences' value={sentenceCount} testId='stat-value-sentences' />

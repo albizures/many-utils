@@ -1,12 +1,8 @@
-export function getWordCount(text: string): number {
-	return text.split(/\s+/).filter((word) => word.length > 0).length
-}
-
 export function getWhitespaceCount(text: string): number {
 	return text.split(/\s+/).length - 1
 }
 
-export function getLines(text: string): Array<string> {
+export function getParagraphs(text: string): Array<string> {
 	return text.split(/\n/).filter((line) => line.length > 0)
 }
 
@@ -29,7 +25,7 @@ export function getSentenceCount(lines: Array<string>): number {
 	return counter
 }
 
-function getWords(text: string): Array<string> {
+export function getWords(text: string): Array<string> {
 	const words = text.split(/\s+/)
 	const results = []
 
