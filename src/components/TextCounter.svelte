@@ -5,15 +5,16 @@
 	import SettingBtn from './TextCounter.SettingBtn.svelte'
 	import Stats from './TextCounter.Stats.svelte'
 
+	const STORAGE_KEY = 'manyutils:text-counter'
+
 	let status = $state<'expanded' | 'collapsed'>('collapsed')
-	let text = $state('')
+	let text = $state(localStorage.getItem(STORAGE_KEY) || '')
 	let textarea: HTMLTextAreaElement
 	let fontSize = $state<'sm' | 'lg' | '2xl'>('lg')
 	let fontType = $state<'sans' | 'serif'>('sans')
 
 	$effect(() => {
-		// eslint-disable-next-line no-unused-expressions
-		text // to trigger the reactivity
+		localStorage.setItem(STORAGE_KEY, text)
 
 		const height = textarea.scrollHeight < 200 ? 200 : textarea.scrollHeight
 
