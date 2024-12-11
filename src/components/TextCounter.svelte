@@ -62,7 +62,7 @@
 	</div>
 	<div class='mx-4 sticky md:pb-0 mt-4 top-0 bg-base-100'>
 		<Collapse initialState='expanded' class='md:hidden' title='Stats'>
-			<div class='grid grid-cols-3 gap-4'>
+			<div class='grid grid-cols-2 md:grid-cols-3 gap-4'>
 				<Stats text={text} />
 			</div>
 		</Collapse>
