@@ -1,4 +1,5 @@
 <script lang='ts'>
+	import { onMount } from 'svelte'
 	import Collapse from './Collapse.svelte'
 	import Icon from './Icon.svelte'
 	import Keywords from './TextCounter.Keywords.svelte'
@@ -8,10 +9,14 @@
 	const STORAGE_KEY = 'manyutils:text-counter'
 
 	let status = $state<'expanded' | 'collapsed'>('collapsed')
-	let text = $state(localStorage.getItem(STORAGE_KEY) || '')
+	let text = $state('')
 	let textarea: HTMLTextAreaElement
 	let fontSize = $state<'sm' | 'lg' | '2xl'>('lg')
 	let fontType = $state<'sans' | 'serif'>('sans')
+
+	onMount(() => {
+		text = text || localStorage.getItem(STORAGE_KEY) || ''
+	})
 
 	$effect(() => {
 		localStorage.setItem(STORAGE_KEY, text)
