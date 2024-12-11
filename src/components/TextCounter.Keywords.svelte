@@ -1,5 +1,5 @@
 <script lang='ts'>
-	import { getKeywordsDensity, getWords } from '../utils/text'
+	import { getKeywords, getWords } from '../utils/text'
 	import Icon from './Icon.svelte'
 	import Value from './TextCounter.Value.svelte'
 
@@ -10,10 +10,10 @@
 	const maxKeywords = 5
 
 	let { text }: Props = $props()
-	const density = $derived(getKeywordsDensity(text))
+	const keywords = $derived(getKeywords(text))
 	const wordCount = $derived(getWords(text).length)
 	let status = $state<'expanded' | 'collapsed'>('collapsed')
-	const displayedWords = $derived(status === 'expanded' ? density : density.slice(0, maxKeywords))
+	const displayedWords = $derived(status === 'expanded' ? keywords : keywords.slice(0, maxKeywords))
 
 	function toggle() {
 		if (status === 'collapsed') {
@@ -25,8 +25,8 @@
 	}
 </script>
 
-<div data-testid='density'>
-	<div>
+<div>
+	<div data-testid='keyword-list'>
 		{#each displayedWords as [keyword, count], index}
 			<Value label={keyword} value={`${count} (${Number.parseInt(`${(count / wordCount) * 100}`, 10)}%)`} testId={`keyword-${index}`} />
 		{/each}
@@ -34,7 +34,7 @@
 
 	{#if displayedWords.length === 0}
 		<p class='text-center mt-1 text-sm opacity-50'>No keywords</p>
-	{:else if density.length > maxKeywords}
+	{:else if keywords.length > maxKeywords}
 		<div class='flex justify-center'>
 			<button class='btn btn-xs btn-ghost mt-2 ' onclick={toggle}>
 				{status === 'collapsed' ? 'Show more' : 'Show less'}

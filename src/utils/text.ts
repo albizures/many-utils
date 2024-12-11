@@ -38,7 +38,7 @@ export function getWords(text: string): Array<string> {
 	return results
 }
 
-export function getKeywordsDensity(text: string) {
+export function getKeywords(text: string) {
 	const words = getWords(text)
 	const count = new Map<string, number>()
 

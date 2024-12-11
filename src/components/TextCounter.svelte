@@ -1,7 +1,7 @@
 <script lang='ts'>
 	import Collapse from './Collapse.svelte'
 	import Icon from './Icon.svelte'
-	import Density from './TextCounter.Density.svelte'
+	import Keywords from './TextCounter.Keywords.svelte'
 	import SettingBtn from './TextCounter.SettingBtn.svelte'
 	import Stats from './TextCounter.Stats.svelte'
 
@@ -67,7 +67,7 @@
 			</div>
 		</Collapse>
 		<Collapse class='md:hidden' title='Keywords'>
-			<Density text={text} />
+			<Keywords text={text} />
 		</Collapse>
 	</div>
 	<div class='flex mt-4'>
@@ -100,7 +100,7 @@
 					</div>
 				</Collapse>
 				<Collapse title='Keywords'>
-					<Density text={text} />
+					<Keywords text={text} />
 				</Collapse>
 			</div>
 		</div>
