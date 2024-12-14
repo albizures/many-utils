@@ -22,6 +22,8 @@ export default antfu({
 	},
 }, {
 	rules: {
+		'no-console': 'warn',
+		'unused-imports/no-unused-vars': 'warn',
 		'prefer-const': 'off',
 		'antfu/top-level-function': 'off',
 		'import/no-mutable-exports': 'off',
