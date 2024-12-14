@@ -57,7 +57,7 @@
 		"tsconfig.json": "tsconfig.*.json",
 		"package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml, bun.lockb",
 		"Cargo.toml": "Cargo.lock",
-		"*.svelte": "${capture}.*.svelte"
+		"*.svelte": "${capture}.*.svelte, ${capture}.*.ts"
 	},
 	"explorer.fileNesting.enabled": true
 }

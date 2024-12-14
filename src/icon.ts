@@ -29,4 +29,5 @@ export const icons = {
 	code: 'i-fa-solid-code',
 	expand: 'i-fa-solid-expand',
 	compress: 'i-fa-solid-compress',
+	file: 'i-fa-solid-file',
 }
