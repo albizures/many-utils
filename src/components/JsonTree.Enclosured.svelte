@@ -1,7 +1,7 @@
 <script lang='ts'>
 	import type { Snippet } from 'svelte'
 	import CaretTree from './CaretTree.svelte'
-	import Content from './JsonVisualizer.Content.svelte'
+	import Content from './JsonTree.Content.svelte'
 
 	type Props = {
 		name?: Snippet

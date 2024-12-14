@@ -1,8 +1,8 @@
 <script lang='ts'>
 	import type { Snippet } from 'svelte'
 	import { type ValueNode } from '@humanwhocodes/momoa'
-	import Array from './JsonVisualizer.Array.svelte'
-	import Object from './JsonVisualizer.Object.svelte'
+	import Array from './JsonTree.Array.svelte'
+	import Object from './JsonTree.Object.svelte'
 
 	type Props = {
 		name?: Snippet

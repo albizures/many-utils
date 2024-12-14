@@ -1,8 +1,8 @@
 <script lang='ts'>
 	import type { Snippet } from 'svelte'
 	import { type ArrayNode } from '@humanwhocodes/momoa'
-	import Enclosured from './JsonVisualizer.Enclosured.svelte'
-	import Node from './JsonVisualizer.Node.svelte'
+	import Enclosured from './JsonTree.Enclosured.svelte'
+	import Node from './JsonTree.Node.svelte'
 
 	type Props = {
 		name?: Snippet

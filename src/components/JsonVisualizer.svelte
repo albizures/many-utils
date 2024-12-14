@@ -3,10 +3,10 @@
 	import { onMount } from 'svelte'
 	import ExpandableUtil from './ExpandableUtil.svelte'
 	import Icon from './Icon.svelte'
+	import Node from './JsonTree.Node.svelte'
 	import Editor from './JsonVisualizer.Editor.svelte'
-	import Node from './JsonVisualizer.Node.svelte'
-	import TabList from './TabList.svelte'
-	import Tab from './TabList.Tab.svelte'
+	import Pane from './Splitpanes.Pane.svelte'
+	import Splitpanes from './Splitpanes.svelte'
 
 	let dragStatus = $state<'dragging' | 'not-dragging'>('not-dragging')
 	let content = $state<string>(JSON.stringify([{
@@ -72,6 +72,18 @@
 
 </script>
 
+<Splitpanes>
+	<Pane><Editor bind:content={content} /></Pane>
+	<Pane><div class='ml-5'>
+		<Node node={ast.body}>
+			{#snippet name()}
+				<span></span>
+			{/snippet}
+		</Node>
+	</div></Pane>
+	<Pane>Diagram</Pane>
+</Splitpanes>
+
 <ExpandableUtil class='px-6' expandedClass='pt-6'>
 	{#if dragStatus === 'dragging'}
 		<div class='fixed top-0 left-0 w-full h-full bg-base-100 bg-opacity-60 z-50 flex items-center justify-center'>
@@ -83,19 +95,4 @@
 			</div>
 		</div>
 	{/if}
-
-	<TabList asExpandableUtil={true} name='json-visualizer-tab'>
-		<Tab title='Editor' index={0}>
-			<Editor bind:content={content} />
-		</Tab>
-		<Tab title='Tree' index={1}>
-			<div class='ml-5'>
-				<Node node={ast.body}>
-					{#snippet name()}
-						<span></span>
-					{/snippet}
-				</Node>
-			</div>
-		</Tab>
-	</TabList>
 </ExpandableUtil>
