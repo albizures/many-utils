@@ -1,5 +1,5 @@
 <script lang='ts'>
-	import { getParagraphs, getSentenceCount, getWhitespaceCount, getWords } from '../utils/text'
+	import { getParagraphs, getSentenceCount, getWhitespaceCount, getWords } from '../helpers/text'
 	import Value from './TextCounter.Value.svelte'
 
 	type Props = {

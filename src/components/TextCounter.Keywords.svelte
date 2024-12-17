@@ -1,5 +1,5 @@
 <script lang='ts'>
-	import { getKeywords, getWords } from '../utils/text'
+	import { getKeywords, getWords } from '../helpers/text'
 	import Icon from './Icon.svelte'
 	import Value from './TextCounter.Value.svelte'
 
