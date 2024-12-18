@@ -1,14 +1,14 @@
 <script lang='ts'>
 	import { onMount } from 'svelte'
 	import Collapse from './Collapse.svelte'
-	import Icon from './Icon.svelte'
+	import ExpandableUtil from './ExpandableUtil.svelte'
+	import ExpandableUtilToggle from './ExpandableUtil.Toggle.svelte'
 	import Keywords from './TextCounter.Keywords.svelte'
 	import SettingBtn from './TextCounter.SettingBtn.svelte'
 	import Stats from './TextCounter.Stats.svelte'
 
 	const STORAGE_KEY = 'manyutils:text-counter'
 
-	let status = $state<'expanded' | 'collapsed'>('collapsed')
 	let text = $state('')
 	let textarea: HTMLTextAreaElement
 	let fontSize = $state<'sm' | 'lg' | '2xl'>('lg')
@@ -27,25 +27,14 @@
 		textarea.style.height = `${height}px`
 	})
 
-	function onExpand() {
-		status = status === 'collapsed' ? 'expanded' : 'collapsed'
-	}
-
 </script>
-<div
-	data-testid='text-counter'
-	class='top-0 left-0 w-full h-full bg-base-100 z-50 p-6'
-	class:fixed={status === 'expanded'}
->
+<ExpandableUtil class='h-full bg-base-100 z-50 p-6'>
 	<div class='flex justify-between'>
 		<span>
 			<!-- just space -->
 		</span>
 		<h1 class='text-2xl sm:text-3xl text-center justify-self-center'>Text Counter</h1>
-		<button onclick={onExpand}>
-			<span class='sr-only'>{status === 'expanded' ? 'collapse' : 'expand'}</span>
-			<Icon class='text-xl' icon='expand' />
-		</button>
+		<ExpandableUtilToggle />
 	</div>
 
 	<div class='mt-8 flex items-baseline space-x-4 justify-center'>
@@ -112,8 +101,7 @@
 		</div>
 	</div>
 
-</div>
-
+</ExpandableUtil>
 {#snippet label(value: string)}
 	<span class='opacity-50'>
 		{value}:

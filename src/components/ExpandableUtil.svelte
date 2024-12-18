@@ -20,7 +20,7 @@
 </script>
 
 <div
-	data-testid='text-counter'
+	data-testid='expandable-util'
 	class={clsx(`top-0 left-0 w-full h-full bg-base-100 z-50`, className, {
 		[expandedClass]: context.status === 'expanded',
 		fixed: context.status === 'expanded',

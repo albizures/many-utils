@@ -30,7 +30,7 @@ it('should expand/collapse', () => {
 
 	cy.findByRole('button', { name: 'expand' }).click()
 
-	cy.findByTestId('text-counter').as('text-counter')
+	cy.findByTestId('expandable-util').as('text-counter')
 
 	cy.get('@text-counter').should('have.css', 'height', `${height}px`)
 	cy.get('@text-counter').should('have.css', 'width', `${width}px`)
