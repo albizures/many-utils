@@ -1,10 +1,8 @@
 <script lang='ts'>
-	import { indentWithTab } from '@codemirror/commands'
-	import { json } from '@codemirror/lang-json'
-	import { EditorView, keymap } from '@codemirror/view'
-	import { basicSetup } from 'codemirror'
-	import { onMount } from 'svelte'
-	import { dracula } from 'thememirror'
+
+	import CodeEditor from './CodeEditor.svelte'
+	import PaneHeader from './PaneHeader.svelte'
+	import { getPaneContext } from './Splitpanes.Context'
 
 	type Props = {
 		content: string
@@ -12,28 +10,12 @@
 
 	let { content = $bindable() }: Props = $props()
 
-	onMount(() => {
-		const editor = new EditorView({
-			doc: content,
-			extensions: [
-				basicSetup,
-				keymap.of([indentWithTab]),
-				json(),
-				dracula,
-			],
-			parent: document.querySelector('#editor')!,
-		})
-
-		$effect(() => {
-			editor.dispatch(
-				editor.state.update({ changes: { from: 0, to: editor.state.doc.length, insert: content } }),
-			)
-		})
-		return () => {
-			content = editor.state.doc.toString()
-			editor.destroy()
-		}
-	})
+	const paneContext = $derived(getPaneContext())
+	const size = $derived(paneContext.size)
 </script>
 
-<div id='editor'></div>
+<PaneHeader title='Editor' icon='code' />
+
+{#if size >= 1}
+	<CodeEditor id='json-editor' bind:content={content} />
+{/if}

@@ -30,4 +30,6 @@ export const icons = {
 	expand: 'i-fa-solid-expand',
 	compress: 'i-fa-solid-compress',
 	file: 'i-fa-solid-file',
+	tree: 'i-fa6-solid-chart-gantt',
+	diagram: 'i-fa6-solid-chart-diagram',
 }

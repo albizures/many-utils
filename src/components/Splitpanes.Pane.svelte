@@ -39,7 +39,7 @@
 
 	const paneContext: PaneContextValue = $derived({
 		index,
-		width: size,
+		size,
 	})
 	setPaneContext(() => paneContext)
 
@@ -48,7 +48,7 @@
 	let widthPx = $derived(`${size}px`)
 </script>
 
-<div style:width={widthPx} bind:this={container} class='border flex-1'>
+<div style:width={widthPx} bind:this={container} class='flex-1'>
 	{@render children()}
 </div>
 

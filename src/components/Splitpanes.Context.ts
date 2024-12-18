@@ -29,7 +29,7 @@ export function getSplitpanesContext(): SplitPaneContextValue {
 
 export type PaneContextValue = {
 	index: number
-	width: number
+	size: number
 }
 
 type PaneGetter = () => PaneContextValue

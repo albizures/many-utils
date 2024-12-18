@@ -49,9 +49,12 @@ const { dark = 'dark', light = 'cupcake' } = Astro.props
 		if (changeOff) {
 			changeOff()
 		}
+
+		const themType = checkbox.checked ? 'dark' : 'light'
 		const theme = getTheme(checkbox.checked)
 
 		document.documentElement.dataset.theme = theme
-		localStorage.setItem('v:theme', theme)
+		document.dispatchEvent(new CustomEvent('theme-change', { detail: themType }))
+		localStorage.setItem('v:theme', themType)
 	})
 </script>

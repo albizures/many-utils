@@ -1,7 +1,8 @@
 ---
-import { IconLinks, Theme } from '@vyke/astro'
+import { IconLinks } from '@vyke/astro'
 import { SITE } from '../config'
 import Navbar from '../components/Navbar.astro'
+import Theme from '../components/Theme.astro'
 
 export type Props = {
 	title?: string
@@ -55,7 +56,7 @@ const socialImageURL = new URL(ogImage ?? SITE.ogImage ?? 'og.png', Astro.url.or
 		<meta name="twitter:image" content={socialImageURL} />
 		<meta name="theme-color" content="" />
 	</head>
-	<body tabindex="0">
+	<body tabindex="0" class="flex flex-col min-h-screen">
 		<Navbar />
 		<slot />
 

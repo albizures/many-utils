@@ -1,0 +1,22 @@
+---
+export type Props = {
+	dark?: string
+	light?: string
+}
+
+const { dark = 'dark', light = 'cupcake' } = Astro.props
+---
+
+<script is:inline define:vars={{ dark, light }}>
+	const customTheme = localStorage.getItem('v:theme')
+	const root = document.documentElement
+
+	if (customTheme === null) {
+		const preferDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+
+		root.dataset.theme = preferDark ? dark : light
+	}
+ else {
+		root.dataset.theme = customTheme === 'dark' ? dark : light
+	}
+</script>

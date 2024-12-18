@@ -16,7 +16,7 @@
 
 <Enclosured name={name} amount={node.members.length} amountLabels={{ singular: 'key', plural: 'keys' }} start={'{'} end={'}'}>
 	{#snippet children()}
-		<div class='flex flex-col pl-6 border-l border-base-content border-opacity-25 border-dashed'>
+		<div class='flex flex-nowrap flex-col pl-6 border-l border-base-content border-opacity-25 border-dashed'>
 			{#each node.members as member}
 				<div>
 					<Node node={member.value}>

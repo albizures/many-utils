@@ -1,6 +1,7 @@
 <script lang='ts'>
 	import type { Snippet } from 'svelte'
 	import { type AddPaneArgs, type Orientation, setSplitpanesContext, type SplitPaneContextValue } from './Splitpanes.Context'
+	import StaticDivider from './Splitpanes.StaticDivider.svelte'
 
 	type Props = {
 		children: Snippet
@@ -44,12 +45,23 @@
 			const prevSize = sizes.get(prev)?.() ?? 0
 			const nextSize = sizes.get(next)?.() ?? 0
 
-			if (prevSize + change < 0 && prev !== 0) {
+			const isFirst = prev === 0
+			const isLast = next === context.elements.length - 1
+			const isPrevZero = prevSize === 0
+			const isNextZero = nextSize === 0
+			const prevWillBeZero = prevSize + change < 0
+			const nextWillBeZero = nextSize - change < 0
+
+			if ((isFirst && isPrevZero && prevWillBeZero) || (isLast && isNextZero && nextWillBeZero)) {
+				return
+			}
+
+			if (prevWillBeZero && !isFirst) {
 				context.resize(prev - 1, next, change)
 				return
 			}
 
-			if (nextSize - change < 0 && next !== context.elements.length - 1) {
+			if (nextWillBeZero && !isLast) {
 				context.resize(prev, next + 1, change)
 				return
 			}
@@ -67,6 +79,11 @@
 	setSplitpanesContext(() => context)
 
 </script>
-<div class='flex min-h-64'>
+<div class='flex flex-1'>
+	<div class='w-5'>
+		<span class='sr-only'>divider</span>
+		<StaticDivider />
+	</div>
+
 	{@render children()}
 </div>

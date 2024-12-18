@@ -1,6 +1,7 @@
 <script lang='ts'>
 	import { onMount } from 'svelte'
 	import { getSplitpanesContext } from './Splitpanes.Context'
+	import StaticDivider from './Splitpanes.StaticDivider.svelte'
 
 	type Props = {
 		prev: number
@@ -33,7 +34,8 @@
 
 </script>
 
-<button onmousedown={onMouseDown} class='bg-primary cursor-col-resize w-4'>
+<button onmousedown={onMouseDown} class='cursor-col-resize w-5'>
 	<span class='sr-only'>divider</span>
-	<div class='h-full w-full bg-gray-300'></div>
+
+	<StaticDivider />
 </button>
