@@ -1,7 +1,7 @@
 <script lang='ts'>
 	import { type DocumentNode } from '@humanwhocodes/momoa'
+	import PaneHeader from '../PaneHeader.svelte'
 	import JsonDiagram from './JsonDiagram.svelte'
-	import PaneHeader from './PaneHeader.svelte'
 
 	type Props = {
 		ast: DocumentNode

@@ -1,8 +1,8 @@
 <script lang='ts'>
 	import { type DocumentNode } from '@humanwhocodes/momoa'
+	import PaneHeader from '../PaneHeader.svelte'
+	import { getPaneContext } from '../Splitpanes.Context'
 	import Node from './JsonTree.Node.svelte'
-	import PaneHeader from './PaneHeader.svelte'
-	import { getPaneContext } from './Splitpanes.Context'
 
 	type Props = {
 		ast: DocumentNode

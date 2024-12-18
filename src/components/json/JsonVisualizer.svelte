@@ -1,12 +1,12 @@
 <script lang='ts'>
 	import { type DocumentNode, parse } from '@humanwhocodes/momoa'
-	import ExpandableUtil from './ExpandableUtil.svelte'
+	import ExpandableUtil from '../ExpandableUtil.svelte'
+	import Pane from '../Splitpanes.Pane.svelte'
+	import Splitpanes from '../Splitpanes.svelte'
 	import Diagram from './JsonVisualizer.Diagram.svelte'
 	import DropArea from './JsonVisualizer.DropArea.svelte'
 	import Editor from './JsonVisualizer.Editor.svelte'
 	import Tree from './JsonVisualizer.Tree.svelte'
-	import Pane from './Splitpanes.Pane.svelte'
-	import Splitpanes from './Splitpanes.svelte'
 
 	let source = $state(JSON.stringify([
 		1, 2, 3,

@@ -1,8 +1,8 @@
 <script lang='ts'>
 
-	import CodeEditor from './CodeEditor.svelte'
-	import PaneHeader from './PaneHeader.svelte'
-	import { getPaneContext } from './Splitpanes.Context'
+	import CodeEditor from '../CodeEditor.svelte'
+	import PaneHeader from '../PaneHeader.svelte'
+	import { getPaneContext } from '../Splitpanes.Context'
 
 	type Props = {
 		content: string
