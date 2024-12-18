@@ -14,4 +14,10 @@ export const utils: Array<Util> = [
 		category: 'text',
 		slug: 'text-counter',
 	},
+	{
+		title: 'Lorem Ipsum Generator',
+		description: 'Generate lorem ipsum text with custom length',
+		category: 'text',
+		slug: 'lorem-ipsum',
+	},
 ]
